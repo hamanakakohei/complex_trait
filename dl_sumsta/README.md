@@ -1,3 +1,10 @@
+to do
+- gwas catalogからのダウンロードをapiでする
+
+GeneATLAS
+- trait key表：http://geneatlas.roslin.ed.ac.uk/traits-table/
+- ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/で適当なtraitを入れると汎用的なものが得られてそれを使い回す
+
 ieu openGWAS
 
 **gwas catalog**
