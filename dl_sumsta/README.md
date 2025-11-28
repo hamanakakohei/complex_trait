@@ -2,6 +2,7 @@ to do
 - gwas catalog
   - ダウンロードをapiでする
   - urlが間違っていてもgcst idから自動で出来るようにする
+- 他のdbも既製のスクリプトがないのか？？
 
 GeneATLAS
 - trait key表：http://geneatlas.roslin.ed.ac.uk/traits-table/
