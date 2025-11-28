@@ -1,5 +1,7 @@
 to do
-- gwas catalogからのダウンロードをapiでする
+- gwas catalog
+  - ダウンロードをapiでする
+  - urlが間違っていてもgcst idから自動で出来るようにする
 
 GeneATLAS
 - trait key表：http://geneatlas.roslin.ed.ac.uk/traits-table/
