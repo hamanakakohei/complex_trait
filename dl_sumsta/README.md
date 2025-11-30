@@ -4,9 +4,11 @@ to do
   - urlが間違っていてもgcst idから自動で出来るようにする
 - 他のdbも既製のスクリプトがないのか？？
 
-GeneATLAS
+**GeneATLAS**
 - trait key表：http://geneatlas.roslin.ed.ac.uk/traits-table/
 - ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/で適当なtraitを入れると汎用的なものが得られてそれを使い回す
+- 列（参照：http://www.dissect.ed.ac.uk/documentation-gwas/
+-   SNP ALLELE iscores NBETA-xxx NSE-xxx PV-xxx
 
 ieu openGWAS
 
