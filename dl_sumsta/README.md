@@ -59,7 +59,7 @@ ieu openGWAS
     - **neglog10_pval_EUR**
     - low_confidence_EUR
   - **chr, pos**, ref, alt,
-    - af_ <meta or each_of_6_pops>
+    - af_ (meta or each_of_6_pops)
     - beta_ <meta or each_of_6_pops>
     - se_ <meta or each_of_6_pops>
     - **neglog10_pval_** <meta or each_of_6_pops>
