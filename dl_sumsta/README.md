@@ -29,9 +29,11 @@ ieu openGWAS
     - n, uniqid, af, info, zval
     - range
 
-**pan-ukbb**
+**Neale lab**
 - xxx_irnt.gwas.imputed_v3.both_sexes.tsv.bgz
   - **variant**, minor_allele, minor_AF, low_confidence_variant, n_complete_samples, AC, ytx, beta, se, tstat, **pval**
+
+**pan-ukbb**
 - biomarkers-xxx-both_sexes-irnt.tsv.bgz 
   - **chr, pos**, ref, alt
     - af_<meta_hq or meta or each_of_6_pops>
@@ -53,9 +55,9 @@ ieu openGWAS
   - **chr, pos**, ref, alt, af_EUR, beta_EUR, se_EUR, **neglog10_pval_EUR**, low_confidence_EUR
   - **chr, pos**, ref, alt,
     - af_<meta or each_of_6_pops>
-    - beta_<meta or each_of_6_pops>,
-    - se_<meta or each_of_6_pops>,
-    - **neglog10_pval_**<meta or each_of_6_pops>,
+    - beta_<meta or each_of_6_pops>
+    - se_<meta or each_of_6_pops>
+    - **neglog10_pval_**<meta or each_of_6_pops>
     - neglog10_pval_heterogeneity,
     - low_confidence_<each_of_6_pops>
   - **chr, pos**, ref, alt,
