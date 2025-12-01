@@ -29,7 +29,7 @@ ieu openGWAS
     - n, uniqid, af, info, zval
     - range
 
-**neale lab ukbb**
+**pan-ukbb**
 - xxx_irnt.gwas.imputed_v3.both_sexes.tsv.bgz
   - **variant**, minor_allele, minor_AF, low_confidence_variant, n_complete_samples, AC, ytx, beta, se, tstat, **pval**
 - biomarkers-xxx-both_sexes-irnt.tsv.bgz 
