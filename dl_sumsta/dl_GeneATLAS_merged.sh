@@ -1,4 +1,23 @@
 #!/usr/bin/env bash
+#
+# GeneATLAS sumstaをダウンロードし。全染色体分をマージする
+# 詳しくは、dl_GeneATLAS_not_merged.shと同じ
+#
+# Usage:
+#   dl_GeneATLAS_merged.sh <TRAIT> <MANIFEST> <OUT_DIR>
+#
+# Arguments:
+#   TRAIT      例："Ease of skin tanning"
+#   MANIFEST   http://geneatlas.roslin.ed.ac.uk/traits-table/からdlできるTraits_Table_GeneATLAS.csvのこと
+#   OUT_DIR    Directory where the downloaded file will be saved.
+#
+# Notes:
+#   - Output directory is created automatically if missing.
+#   - このスクリプトの出力はタブ区切りで:
+#       "0 <trait> <file_name>" （全ファイル成功時）
+#       "1 <trait>" （一つでも失敗時）
+#   - この<file_name>は、${KEY}.merged.csv.gz
+#----------------------------------------------
 set -euo pipefail
 
 TRAIT="$1"
