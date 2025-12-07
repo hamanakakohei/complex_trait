@@ -5,7 +5,7 @@
 # なのでset -e は外している（失敗時に次へ進めないため）
 #
 # Usage:
-#   download_fallback.sh <URL> <OUT_DIR> <THREADS>
+#   dl_fastGWA.sh <URL> <OUT_DIR> <THREADS>
 #
 # Arguments:
 #   URL        Primary URL to try first (others are auto-generated).
