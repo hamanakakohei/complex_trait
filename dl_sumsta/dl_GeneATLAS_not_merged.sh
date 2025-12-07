@@ -2,13 +2,16 @@
 #
 # GeneATLAS sumstaをダウンロードし。全染色体をマージせずにそのまま
 # マージするとファイルが巨大かつ各行の染色体が不明になり後でフィルターできないので
-# 
+# TRAITを与えて、TRAIT --> KEY --> URLとする
+# そのために、MANIFESTの2列目のDescription列の値がTRAITと一致する行の、1列目のkey列の値を取り出すのだが、
+# WeightとBMIについては2行（2 key）あるため、（mlr --csv cut -f Description $MANIFEST | sort | uniq -cで確認できる）
+# tail -n1で一つだけとっている
 #
 # Usage:
 #   dl_GeneATLAS_not_merged.sh <TRAIT> <MANIFEST> <OUT_DIR>
 #
 # Arguments:
-#   TRAIT        例：https://gwas.mrcieu.ac.uk/files/ukb-b-6027/ukb-b-6027.vcf.gz
+#   TRAIT      例："Ease of skin tanning"
 #   MANIFEST   http://geneatlas.roslin.ed.ac.uk/traits-table/からdlできるTraits_Table_GeneATLAS.csvのこと
 #   OUT_DIR    Directory where the downloaded file will be saved.
 #
@@ -28,9 +31,7 @@ OUT_DIR="$3"
 mkdir -p "$OUT_DIR"
 
 
-# ダウンロード用にTRAIT --> KEY --> URLとしないといけない
-# MANIFESTの2列目のDescription列の値がTRAITと一致する行の、1列目のkey列の値を取り出す
-# 最後にtail -n1しているのは、WeightとBMIが2行（2 key）あるため、、（mlr --csv cut -f Description $MANIFEST | sort | uniq -cで確認できる）
+# TRAIT --> KEY
 KEY=$(mlr --csv filter "\$Description==\"$TRAIT\"" then cut -f key $MANIFEST | tail -n1)
 
 url_for_chr() {
