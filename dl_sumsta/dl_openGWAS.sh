@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 #
 # openGWAS sumstaをダウンロードする.
-# URLが更新されて候補となるのが複数あるので、与えたURLからファイル名を取り出して全部試す
+# トークンが要るので、.bash_profileなどにexport OPENGWAS_TOKEN=xxxを書いて、事前にsource .bash_profileとかしておく
+# 今は、CAUSALdbの示す間違ったURLからtrait? IDを抜き出して、APIで真のURLを得ているのだが、本当は引数でIDを直に与えた方がシンプル
 #
 # Usage:
-#   download_fallback.sh <URL> <OUT_DIR> <THREADS>
+#   dl_openGWAS.sh <URL> <OUT_DIR> <THREADS>
 #
 # Arguments:
-#   URL        Primary URL to try first (others are auto-generated).
+#   URL        例：https://gwas.mrcieu.ac.uk/files/ukb-b-6027/ukb-b-6027.vcf.gz
 #   OUT_DIR    Directory where the downloaded file will be saved.
 #   THREADS    Number of threads passed to aria2c (-x and -s).
 #
