@@ -26,3 +26,4 @@ for descriptor in root.findall("DescriptorRecord"):
     mesh_ids = get_mesh_ids(descriptor, mesh_ids)
 
 print(mesh_ids)
+

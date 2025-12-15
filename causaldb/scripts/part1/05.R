@@ -27,19 +27,19 @@ plot_bins = setdiff(argv$bin_order, argv$ref_bin)
 all_res = lapply( unique(dt$data), function( DATA ){
   lapply( plot_bins, function( PLOT_BIN ){
 
-      table.2x2 = dt %>%
+      table.2x2 = dt %>% 
         mutate( bin = factor( bin, levels = argv$bin_order ) ) %>%
         arrange( bin ) %>%
-        filter( data == DATA ) %>%
-        filter( bin %in% c( argv$ref_bin, PLOT_BIN ) ) %>%
+        filter( data == DATA ) %>% 
+        filter( bin %in% c( argv$ref_bin, PLOT_BIN ) ) %>% 
         select( argv$noneffect_col, argv$effect_col ) %>%
         as.matrix
       print(table.2x2)
       if (nrow(table.2x2) != 2 || ncol(table.2x2) != 2)
         stop("Error: 分割表が変です")
-
+      
       res = fisher.exact( table.2x2 )
-
+    
       tibble(
         data = DATA,
         bin = PLOT_BIN,
@@ -73,3 +73,4 @@ p = ggplot( all_res, aes( x = data, y = or, ymin = dn, ymax = up, group = bin, c
   #) ) +
 
 ggsave( argv$out, p ) #, height=60, units="cm", dpi=600 )
+

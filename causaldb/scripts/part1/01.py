@@ -30,7 +30,7 @@ def main():
         df["pip"] = pd.to_numeric(df["pip"], errors="raise")
     except Exception:
         sys.exit("[ERROR] PIP column contains non-numeric values.")
-
+    
     df["pip"] = df["pip"].replace(-1, 0).fillna(0)
 
     # ea, nea列にA,C,G,T以外のもじがあるとエラー
@@ -38,7 +38,7 @@ def main():
         invalid_mask = ~df[allele_col].astype(str).str.fullmatch(r"[ACGT]+", na=False)
         if invalid_mask.any():
             sys.exit(f"[ERROR] Invalid characters found in '{allele_col}' column.")
-
+        
     if args.cs95_only:
         grp = df.groupby(["meta_id", "block_id", "primary"], observed=True)["pip"].sum()
         good = grp[grp > 0.95].reset_index()[["meta_id", "block_id", "primary"]]
@@ -55,19 +55,20 @@ def main():
         df["p"] = pd.to_numeric(df["p"], errors="raise")
     except Exception:
         sys.exit("[ERROR] Column 'p' contains non-numeric values.")
-
+    
     df = df[df["p"] < args.p_thr]
 
     # そのまま出力するのと、バリアントごとにmax PIPを出すのと
-    out_main = args.prefix + ".txt.gz"
+    out_main = args.prefix + ".whole.txt.gz"
     df.to_csv(out_main, sep="\t", index=False)
 
-    out_rsid = args.prefix + ".rsid_156.maxPIP.txt.gz"
+    out_rsid = args.prefix + ".rsid156_vs_maxPIP.txt.gz"
     df.groupby("rsid", observed=True)["pip"].max().reset_index().to_csv(out_rsid, sep="\t", index=False)
 
-    out_var = args.prefix + ".varid_hg19.maxPIP.txt.gz"
+    out_var = args.prefix + ".varidHg19_vs_maxPIP.txt.gz"
     df.groupby("variant_id", observed=True)["pip"].max().reset_index().to_csv(out_var, sep="\t", index=False)
 
 
 if __name__ == "__main__":
     main()
+
