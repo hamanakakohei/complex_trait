@@ -12,6 +12,10 @@ to do
 
 ieu openGWAS
 
+**GWASATLAS**
+参考：https://atlas.ctglab.nl/documentation
+BETAかORかどちらか
+
 **gwas catalog**
 - GCSTxxx.h.tsv.gz
   - **chromosome, base_pair_location**, effect_allele, other_allele, beta, standard_error, effect_allele_frequency, **p_value**, variant_id, hm_coordinate_conversion, hm_code, **rsid**
