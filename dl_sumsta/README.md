@@ -30,6 +30,7 @@ ieu openGWAS
     - range
 
 **Neale lab**
+- 参照：https://docs.google.com/spreadsheets/d/1kvPoupSzsSFBNSztMzl04xMoSC3Kcx3CrjVf4yBmESU/edit?gid=227859291#gid=227859291
 - xxx_irnt.gwas.imputed_v3.both_sexes.tsv.bgz
   - **variant**, minor_allele, minor_AF, low_confidence_variant, n_complete_samples, AC, ytx, beta, se, tstat, **pval**
 
