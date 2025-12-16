@@ -13,8 +13,11 @@ to do
 ieu openGWAS
 
 **GWASATLAS**
-参考：https://atlas.ctglab.nl/documentation
-BETAかORかどちらか
+- 参考：https://atlas.ctglab.nl/documentation
+- BETAかORかどちらか
+- GRCh37
+- SNP列のアレル表記は「alphabetically ordered」とのことで何の意味も無し、、、
+- A1はMAFが低いのを選んでいそうなので、MAF = EAFとなる
 
 **gwas catalog**
 - GCSTxxx.h.tsv.gz
@@ -39,6 +42,10 @@ BETAかORかどちらか
   - **variant**, minor_allele, minor_AF, low_confidence_variant, n_complete_samples, AC, ytx, beta, se, tstat, **pval**
 
 **pan-ukbb**
+- 参照：
+- - https://pan.ukbb.broadinstitute.org/docs/per-phenotype-files/index.html
+  - https://docs.google.com/spreadsheets/d/1AeeADtT0U1AukliiNyiVzVRdLYPkTbruQSk38DeutU8/edit?gid=1450719288#gid=1450719288
+  - https://pan-dev.ukbb.broadinstitute.org/downloads
 - biomarkers-xxx-both_sexes-irnt.tsv.bgz 
   - **chr, pos**, ref, alt
     - af_<meta_hq or meta or each_of_6_pops>
