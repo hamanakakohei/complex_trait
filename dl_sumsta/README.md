@@ -20,6 +20,9 @@ ieu openGWAS
 - A1はMAFが低いのを選んでいそうなので、MAF = EAFとなる
 
 **gwas catalog**
+- 注意点：
+- - hm_chromはNAのことがあり（chromosome列は値があるのに）読み込むとfloatになるときがある
+  - OR等の列がNAのままだと.basic_check()でそのバリアントは除かれるので、列を消しておく
 - GCSTxxx.h.tsv.gz
   - **chromosome, base_pair_location**, effect_allele, other_allele, beta, standard_error, effect_allele_frequency, **p_value**, variant_id, hm_coordinate_conversion, hm_code, **rsid**
     - Direction, HetChiSq, HetDf, HetISq, HetPVal, 
