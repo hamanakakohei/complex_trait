@@ -10,7 +10,7 @@ to do
 - 列（参照：http://www.dissect.ed.ac.uk/documentation-gwas/
 -   SNP ALLELE iscores NBETA-xxx NSE-xxx PV-xxx
 
-ieu openGWAS
+**ieu openGWAS**
 
 **GWASATLAS**
 - 参考：https://atlas.ctglab.nl/documentation
