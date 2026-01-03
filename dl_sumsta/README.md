@@ -51,7 +51,7 @@ to do
   - マニフェスト: https://docs.google.com/spreadsheets/d/1kvPoupSzsSFBNSztMzl04xMoSC3Kcx3CrjVf4yBmESU/edit?gid=227859291#gid=227859291
     - sumstaだけでなく以下のような色々なメタデータファイルあり：
       - Updated v2 phenotype summary file（phenotypes.both_sexes.v2.tsv.bgz）
-        - 
+        - case数、control数
       - List of phenotypes with updated sample counts in v2 phenotype summary file
       - List of variants used in GWAS, with annotations 
       - Summary of biomarker phenotypes
