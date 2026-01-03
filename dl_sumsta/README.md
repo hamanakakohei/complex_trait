@@ -6,23 +6,29 @@ to do
 
 **GeneATLAS**
 - trait key表：http://geneatlas.roslin.ed.ac.uk/traits-table/
-- ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/で適当なtraitを入れると汎用的なものが得られてそれを使い回す
-- 列（参照：http://www.dissect.ed.ac.uk/documentation-gwas/
--   SNP ALLELE iscores NBETA-xxx NSE-xxx PV-xxx
+  - ここでcase controlか定量値か、case数control数がわかる
+- sumsta
+  - ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/で適当なtraitを入れると汎用的なものが得られてそれを使い回す
+  - 列（参照：http://www.dissect.ed.ac.uk/documentation-gwas/）
+    - SNP ALLELE iscores NBETA-xxx NSE-xxx PV-xxx
 
 **ieu openGWAS**
 
 **GWASATLAS**
 - 参考：https://atlas.ctglab.nl/documentation
-- BETAかORかどちらか
-- GRCh37
-- SNP列のアレル表記は「alphabetically ordered」とのことで何の意味も無し、、、
-- A1はMAFが低いのを選んでいそうなので、MAF = EAFとなる
+- trait表：https://atlas.ctglab.nl/traitDB
+  - ここの下の「Search:」でtraitを検索するとcase controlか定量値か、、case数control数がわかる
+- sumsta
+  - GRCh37
+  - BETAかORかどちらか
+  - SNP列のアレル表記は「alphabetically ordered」とのことで何の意味も無し、、、
+  - A1はMAFが低いのを選んでいそうなので、MAF = EAFとなる
 
 **gwas catalog**
 - 注意点：
-- - hm_chromはNAのことがあり（chromosome列は値があるのに）読み込むとfloatになるときがある
+  - hm_chromはNAのことがあり（chromosome列は値があるのに）読み込むとfloatになるときがある
   - OR等の列がNAのままだと.basic_check()でそのバリアントは除かれるので、列を消しておく
+  - case control数などどこにものっていない時もあり、論文を見ないといけないかも
 - GCSTxxx.h.tsv.gz
   - **chromosome, base_pair_location**, effect_allele, other_allele, beta, standard_error, effect_allele_frequency, **p_value**, variant_id, hm_coordinate_conversion, hm_code, **rsid**
     - Direction, HetChiSq, HetDf, HetISq, HetPVal, 
@@ -40,7 +46,22 @@ to do
     - range
 
 **Neale lab**
-- 参照：https://docs.google.com/spreadsheets/d/1kvPoupSzsSFBNSztMzl04xMoSC3Kcx3CrjVf4yBmESU/edit?gid=227859291#gid=227859291
+- 参照：
+  - FAQ: https://www.nealelab.is/uk-biobank/faq
+  - マニフェスト: https://docs.google.com/spreadsheets/d/1kvPoupSzsSFBNSztMzl04xMoSC3Kcx3CrjVf4yBmESU/edit?gid=227859291#gid=227859291
+    - sumstaだけでなく以下のような色々なメタデータファイルあり：
+      - Updated v2 phenotype summary file（phenotypes.both_sexes.v2.tsv.bgz）
+        - 
+      - List of phenotypes with updated sample counts in v2 phenotype summary file
+      - List of variants used in GWAS, with annotations 
+      - Summary of biomarker phenotypes
+      - Inferred genetic sex
+      - Age at recruitment
+  - binary phenotypeもlinear regressionしている？：https://www.nealelab.is/blog/2017/9/11/details-and-considerations-of-the-uk-biobank-gwas
+- ordinal
+  - どう解析した？？？
+- biomarkers
+  - https://www.nealelab.is/blog/2019/9/16/biomarkers-gwas-results
 - xxx_irnt.gwas.imputed_v3.both_sexes.tsv.bgz
   - **variant**, minor_allele, minor_AF, low_confidence_variant, n_complete_samples, AC, ytx, beta, se, tstat, **pval**
 
