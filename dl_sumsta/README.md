@@ -67,8 +67,9 @@ to do
 
 **pan-ukbb**
 - 参照：
-- - https://pan.ukbb.broadinstitute.org/docs/per-phenotype-files/index.html
-  - https://docs.google.com/spreadsheets/d/1AeeADtT0U1AukliiNyiVzVRdLYPkTbruQSk38DeutU8/edit?gid=1450719288#gid=1450719288
+  - per-phenotype file: https://pan.ukbb.broadinstitute.org/docs/per-phenotype-files/index.html
+  - manifest: https://docs.google.com/spreadsheets/d/1AeeADtT0U1AukliiNyiVzVRdLYPkTbruQSk38DeutU8/edit?gid=1450719288#gid=1450719288
+    - case数、control数
   - https://pan-dev.ukbb.broadinstitute.org/downloads
 - biomarkers-xxx-both_sexes-irnt.tsv.bgz 
   - **chr, pos**, ref, alt
@@ -110,11 +111,16 @@ to do
     - low_confidence_ <each_of_6_pops>
 
 **finngen**
+- ダウンロード、ブラウザー、ドキュメント：https://www.finngen.fi/en/access_results
 - finngen_xxx.gz
   - **#chrom**, **pos**, ref, alt, **rsids**, nearest_genes, **pval**, mlogp, beta, sebeta, af_alt, af_alt_cases, af_alt_controls
 
-**Yang lab**
-- <xxx>.v1.1.fastGWA.gz
-  - **CHR**, **SNP**, **POS**, A1, A2, N, AF1, BETA, SE, **P**
-- <xxx>.v1.0.fastGWA.gz
-  - **CHR**, **SNP**, **POS**, A1, A2, N, AF1, T, SE_T, P_noSPA, BETA, SE, **P**, CONVERGE
+**Yang lab fastGWA**
+- about: https://yanglab.westlake.edu.cn/data/ukb_fastgwa/imp_binary/about
+- tutorial: https://yanglab.westlake.edu.cn/data/ukb_fastgwa/tutorial.html
+- detail: https://yanglab.westlake.edu.cn/software/gcta/index.html#DataResource
+- sumsta
+  - <xxx>.v1.1.fastGWA.gz
+    - **CHR**, **SNP**, **POS**, A1, A2, N, AF1, BETA, SE, **P**
+  - <xxx>.v1.0.fastGWA.gz
+    - **CHR**, **SNP**, **POS**, A1, A2, N, AF1, T, SE_T, P_noSPA, BETA, SE, **P**, CONVERGE
