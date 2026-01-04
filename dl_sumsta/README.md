@@ -82,11 +82,13 @@ to do
 **pan-ukbb**
 - 参照：
   - per-phenotype file: https://pan.ukbb.broadinstitute.org/docs/per-phenotype-files/index.html
+    - "continuous" or "biomarkers" --> quantitative
+    - "prescriptions", "icd10", "phecode" or "categorical" --> binary
   - manifest: https://docs.google.com/spreadsheets/d/1AeeADtT0U1AukliiNyiVzVRdLYPkTbruQSk38DeutU8/edit?gid=1450719288#gid=1450719288
-    - variable_type列：binary, continuous_irnt, continuous_raw, ordinal
-    - n_non_missing
-    - n_controls
-    - n_cases
+    - trait_type列：continuous, biomarkers, prescriptions, icd10, phecode, categoricalのどれか
+    - n_cases_full_cohort_both_sexes（これのn_controls版が無い）, n_cases_EUR, n_controls_EUR
+    - filename列
+  - LD matrices: https://pan.ukbb.broadinstitute.org/docs/hail-format#exporting-a-ld-matrix-to-a-flat-file
   - https://pan-dev.ukbb.broadinstitute.org/downloads
 - biomarkers-xxx-both_sexes-irnt.tsv.bgz 
   - **chr, pos**, ref, alt
