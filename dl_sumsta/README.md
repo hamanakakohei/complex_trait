@@ -5,7 +5,7 @@ to do
 - 他のdbも既製のスクリプトがないのか？？
 
 **GeneATLAS**
-- trait key表：http://geneatlas.roslin.ed.ac.uk/traits-table/
+- trait表：http://geneatlas.roslin.ed.ac.uk/traits-table/
   - ここでcase controlか定量値か、case数control数がわかる
 - sumsta
   - ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/で適当なtraitを入れると汎用的なものが得られてそれを使い回す
@@ -13,11 +13,13 @@ to do
     - SNP ALLELE iscores NBETA-xxx NSE-xxx PV-xxx
 
 **ieu openGWAS**
+- trait表: https://opengwas.io/datasets/
+  - ここの下の「Search:」でtraitを検索するとcase数control数やらわかる
 
 **GWASATLAS**
 - 参考：https://atlas.ctglab.nl/documentation
 - trait表：https://atlas.ctglab.nl/traitDB
-  - ここの下の「Search:」でtraitを検索するとcase controlか定量値か、、case数control数がわかる
+  - ここの下の「Search:」でtraitを検索するとcase数control数やらわかる
 - sumsta
   - GRCh37
   - BETAかORかどちらか
@@ -119,6 +121,9 @@ to do
 - about: https://yanglab.westlake.edu.cn/data/ukb_fastgwa/imp_binary/about
 - tutorial: https://yanglab.westlake.edu.cn/data/ukb_fastgwa/tutorial.html
 - detail: https://yanglab.westlake.edu.cn/software/gcta/index.html#DataResource
+  - sumstaの列の解説
+  - Summary table: UKB_impute_v1.1.csv, UKB_binary_v1.11.csv, etc.
+    - case数、control数  
 - sumsta
   - <xxx>.v1.1.fastGWA.gz
     - **CHR**, **SNP**, **POS**, A1, A2, N, AF1, BETA, SE, **P**
