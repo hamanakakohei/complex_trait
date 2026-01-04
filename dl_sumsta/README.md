@@ -6,15 +6,23 @@ to do
 
 **GeneATLAS**
 - trait表：http://geneatlas.roslin.ed.ac.uk/traits-table/
-  - ここでcase controlか定量値か、case数control数がわかる
+  - ここでcase controlか連続形質か、case数control数がわかるが、連続形質の時は全サンプル数がわからない、、
+- FAQ: http://geneatlas.roslin.ed.ac.uk/frequently-asked-questions/
+  -  1st release: 408,455 white-British; 2nd release: 452,264 white ancestry らしいので連続形質の時はこれを全サンプル数とするか
 - sumsta
   - ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/で適当なtraitを入れると汎用的なものが得られてそれを使い回す
   - 列（参照：http://www.dissect.ed.ac.uk/documentation-gwas/）
     - SNP ALLELE iscores NBETA-xxx NSE-xxx PV-xxx
+- snp情報
+  - ダウンロード: http://geneatlas.roslin.ed.ac.uk/downloads/ でsumstaのとなりのstatsファイルから
+  - 列
+    - SNP Position A1 A2 MAF HWE-P iscore
+    - このMAFは本当にminor alleleの方なのでA1 freqかA2 freqかは
 
 **ieu openGWAS**
 - trait表: https://opengwas.io/datasets/
-  - ここの下の「Search:」でtraitを検索するとcase数control数やらわかる
+  - ここの「Export current results to CSV」で全traitのsample sizeがわかる
+  - 下の「Search:」でtraitを検索してさらにクリックすればcase数がわかる
 
 **GWASATLAS**
 - 参考：https://atlas.ctglab.nl/documentation
@@ -51,14 +59,18 @@ to do
 - 参照：
   - FAQ: https://www.nealelab.is/uk-biobank/faq
   - マニフェスト: https://docs.google.com/spreadsheets/d/1kvPoupSzsSFBNSztMzl04xMoSC3Kcx3CrjVf4yBmESU/edit?gid=227859291#gid=227859291
-    - sumstaだけでなく以下のような色々なメタデータファイルあり：
+    - 主なファイルの列の説明
+      - variants.tsv.bgz
+      - phenotypes.{both_sexes,female,male}.tsv.bgz
+        - EAFはAC / (n_complete_samples * 2)と自分で計算するのがよさそう 
+      - <phenotype_code>.gwas.imputed_v3.{both_sexes,female,male}.tsv.bgz
+    - 他にも色々なメタデータファイルあり：
       - Updated v2 phenotype summary file（phenotypes.both_sexes.v2.tsv.bgz）
-        - case数、control数
+        - variable_type列：binary, continuous_irnt, continuous_raw, ordinal
+        - n_non_missing, n_controls, n_cases列
       - List of phenotypes with updated sample counts in v2 phenotype summary file
       - List of variants used in GWAS, with annotations 
       - Summary of biomarker phenotypes
-      - Inferred genetic sex
-      - Age at recruitment
   - binary phenotypeもlinear regressionしている？：https://www.nealelab.is/blog/2017/9/11/details-and-considerations-of-the-uk-biobank-gwas
 - ordinal
   - どう解析した？？？
@@ -71,7 +83,10 @@ to do
 - 参照：
   - per-phenotype file: https://pan.ukbb.broadinstitute.org/docs/per-phenotype-files/index.html
   - manifest: https://docs.google.com/spreadsheets/d/1AeeADtT0U1AukliiNyiVzVRdLYPkTbruQSk38DeutU8/edit?gid=1450719288#gid=1450719288
-    - case数、control数
+    - variable_type列：binary, continuous_irnt, continuous_raw, ordinal
+    - n_non_missing
+    - n_controls
+    - n_cases
   - https://pan-dev.ukbb.broadinstitute.org/downloads
 - biomarkers-xxx-both_sexes-irnt.tsv.bgz 
   - **chr, pos**, ref, alt
@@ -91,6 +106,7 @@ to do
     - neglog10_pval_heterogeneity
     - low_confidence_<each_of_6_pops>
 - continuous-xxx--both_sexes-<"" or "auto_medadj" or "combined_medadj">_<irnt or raw>.tsv.bgz
+  - xxx_meta_hqはあったり無かったりなので、xxx_metaを使った方が楽
   - **chr, pos**, ref, alt
     - af_EUR
     - beta_EUR
