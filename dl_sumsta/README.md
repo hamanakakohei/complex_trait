@@ -7,6 +7,7 @@ to do
 **GeneATLAS**
 - trait表：http://geneatlas.roslin.ed.ac.uk/traits-table/
   - ここでcase controlか連続形質か、case数control数がわかるが、連続形質の時は全サンプル数がわからない、、
+  - 一覧表をダウンロードできる：Traits_Table_GeneATLAS.csv
 - FAQ: http://geneatlas.roslin.ed.ac.uk/frequently-asked-questions/
   -  1st release: 408,455 white-British; 2nd release: 452,264 white ancestry らしいので連続形質の時はこれを全サンプル数とするか
 - sumsta
@@ -17,7 +18,7 @@ to do
   - ダウンロード: http://geneatlas.roslin.ed.ac.uk/downloads/ でsumstaのとなりのstatsファイルから
   - 列
     - SNP Position A1 A2 MAF HWE-P iscore
-    - このMAFは本当にminor alleleの方なのでA1 freqかA2 freqかは
+    - このMAFは本当にminor alleleの方なのでA1 freqかA2 freqかはわからない、、
 
 **ieu openGWAS**
 - trait表: https://opengwas.io/datasets/
