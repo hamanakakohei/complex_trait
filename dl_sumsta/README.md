@@ -29,6 +29,7 @@ to do
 - 参考：https://atlas.ctglab.nl/documentation
 - trait表：https://atlas.ctglab.nl/traitDB
   - ここの下の「Search:」でtraitを検索するとcase数control数やらわかる
+  - システマティックにこれ方法は無さそう方法は無さそう
 - sumsta
   - GRCh37
   - BETAかORかどちらか
