@@ -133,8 +133,10 @@ to do
     - low_confidence_ <each_of_6_pops>
 
 **finngen**
-- ダウンロード、ブラウザー、ドキュメント：https://www.finngen.fi/en/access_results
-- finngen_xxx.gz
+- 参考：https://www.finngen.fi/en/access_results
+- ブラウザー：https://r11.finngen.fi/降しか無くて古いのはアクセスできない、左下のDownload Tableからcase数などの一覧が手に入る
+- sumsta
+  - finngen_xxx.gz
   - **#chrom**, **pos**, ref, alt, **rsids**, nearest_genes, **pval**, mlogp, beta, sebeta, af_alt, af_alt_cases, af_alt_controls
 
 **Yang lab fastGWA**
