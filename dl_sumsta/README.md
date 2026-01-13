@@ -24,6 +24,7 @@ to do
 - trait表: https://opengwas.io/datasets/
   - ここの「Export current results to CSV」で全traitのsample sizeがわかる
   - 下の「Search:」でtraitを検索してさらにクリックすればcase数がわかる
+  - hg19 (https://opengwas.io/about)
 
 **GWASATLAS**
 - 参考：https://atlas.ctglab.nl/documentation
