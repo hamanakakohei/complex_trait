@@ -11,9 +11,10 @@ to do
 - FAQ: http://geneatlas.roslin.ed.ac.uk/frequently-asked-questions/
   -  1st release: 408,455 white-British; 2nd release: 452,264 white ancestry らしいので連続形質の時はこれを全サンプル数とするか
 - sumsta
-  - ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/で適当なtraitを入れると汎用的なものが得られてそれを使い回す
+  - ダウンロード用スクリプトはhttp://geneatlas.roslin.ed.ac.uk/downloads/ で適当なtraitを入れると汎用的なものが得られる
   - 列（参照：http://www.dissect.ed.ac.uk/documentation-gwas/）
     - SNP ALLELE iscores NBETA-xxx NSE-xxx PV-xxx
+    - このALLELEはrefで下のsnp情報ファイルのA2と一致する、なのでaltは下のA1がそれ
 - snp情報
   - ダウンロード: http://geneatlas.roslin.ed.ac.uk/downloads/ でsumstaのとなりのstatsファイルから
   - 列
