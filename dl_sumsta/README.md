@@ -149,8 +149,8 @@ to do
   - Summary table: UKB_impute_v1.1.csv, UKB_binary_v1.11.csv, etc.
     - case数、control数  
 - sumsta
+  - 注意点：A1がrefでA2がalt！！
   - <xxx>.v1.1.fastGWA.gz
     - **CHR**, **SNP**, **POS**, A1, A2, N, AF1, BETA, SE, **P**
-    - A1がrefでA2がaltなことに注意！！下のv1.0はA1がaltでA2がref
   - <xxx>.v1.0.fastGWA.gz
     - **CHR**, **SNP**, **POS**, A1, A2, N, AF1, T, SE_T, P_noSPA, BETA, SE, **P**, CONVERGE
