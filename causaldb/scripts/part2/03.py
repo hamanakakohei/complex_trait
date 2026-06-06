@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+#
+# locuscompareなど色々な下流解析のインプットを作る、なのでできる限り多くの情報を入れる
 import argparse
 import pandas as pd
 
@@ -15,7 +17,7 @@ def extract_chr(variant_id):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="locuscompare用の入力ファイルを作る")
+    parser = argparse.ArgumentParser(description="")
     parser.add_argument("--in1", required=True)
     parser.add_argument("--in2", required=True)
     parser.add_argument("--out", required=True)
@@ -28,7 +30,8 @@ def main():
     merged["chr"] = merged["variant_id"].apply(extract_chr)
 
     # 列順が大切、locuscompareスクリプト用に
-    desired_cols = ["rsid", "chr", "phenotype_id", "f", "fmt", "popu", "url", "trait"]
+    #desired_cols = ["rsid", "chr", "phenotype_id", "f", "fmt", "popu", "url", "trait"]
+    desired_cols = ["rsid", "variant_id", "chr", "phenotype_id", "f", "fmt", "popu", "url", "trait", "mesh_term", "mesh_id", "sample_size", "n_case", "n_control"]
     merged = merged[desired_cols]
     merged.drop_duplicates().to_csv(args.out, sep="\t", index=False)
 
