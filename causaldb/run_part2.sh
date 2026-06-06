@@ -31,7 +31,6 @@
 #       - trait: CAUSALdb提供でsumstaをDLするときに使ったもの
 set -euo pipefail
 eval "$(conda shell.bash hook)"
-
 conda activate misc_20250301
 
 
