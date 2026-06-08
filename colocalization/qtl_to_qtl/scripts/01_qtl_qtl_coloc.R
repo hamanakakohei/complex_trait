@@ -4,10 +4,6 @@
 #
 # 出力：
 # coloc.susie結果
-#
-# to do:
-# - coloc.abfを引数で指定して使えるようにする
-# - only_plot引数は廃止して、自動で毎回reginoal plotが出るようにする？
 library(coloc)
 library(arrow)
 library(bigsnpr)
@@ -27,6 +23,61 @@ parser$add_argument("--adjust_ld_by_cov", help = "covariteでadjustしたgenotyp
 parser$add_argument("--out_prefix", help = ".is_in_cs95ファイルはcs列が-1ならcs95にない。とregional plot画像。とcoloc_susie結果のファイル。")
 parser$add_argument("--only_plot", help = "ウィンドウを決めるためにプロットのみする。", action = "store_true")
 args <- parser$parse_args()
+
+VARIANT_ID = args$variant_id
+GENE1 = args$phen_id1
+GENE2 = args$phen_id2
+ASSOC_PREFIX = args$assoc_prefix
+GENO_PREFIX = args$geno_prefix
+PHEN = args$phen
+COV = args$cov
+WINDOW = args$window
+COV_ADJUSTMENT = args$adjust_ld_by_cov
+ONLY_PLOT = args$only_plot
+
+
+## 5
+#VARIANT_ID = 'chr11:111378732:A:T'
+#GENE1 = 'Group165'
+#GENE2 = 'ENSG00000214290.9'
+#WINDOW = 300000
+## 6
+#VARIANT_ID = 'chr12:94204012:A:G'
+#GENE1 = 'Group175'
+#GENE2 = 'ENSG00000258035.2'
+#WINDOW = 1000000
+## 28
+#VARIANT_ID = 'chr6:27592808:A:G'
+#GENE1 = 'novelGene_317'
+#GENE2 = 'ENSG00000216915.2'
+#WINDOW = 1000000
+## 31
+#VARIANT_ID = 'chr6:27592808:A:G'
+#GENE1 = 'novelGene_317'
+#GENE2 = 'ENSG00000216901.1'
+#WINDOW = 2000000
+## 32
+#VARIANT_ID = 'chr6:29573789:A:G'
+#GENE1 = 'novelGene_324'
+#GENE2 = 'ENSG00000235821.1'
+#WINDOW = 600000
+## 32
+#VARIANT_ID = 'chr4:3056181:T:C'
+#GENE1 = 'novelGene_ENSG00000251075.3_AS'
+#GENE2 = 'ENSG00000125388.20'
+#WINDOW = 2000000
+## 39
+#VARIANT_ID = 'chr1:160429796:T:C'
+#GENE1 = 'novelGene_46'
+#GENE2 = 'ENSG00000066294.15'
+#WINDOW = 2000000
+#
+#
+#ASSOC_PREFIX = '~/gm_rnaseq/gtex-pipeline_do2/qtl_e/cromwell-executions/tensorqtl_cis_nominal_workflow/03193177-34d0-4925-b899-314cb653c348/call-tensorqtl_cis_nominal/execution/rnaseq430.nominal.cis_qtl_pairs.'
+#GENO_PREFIX = '~/gm/plink_bed/plink1_format/results/ALL.correctRefAlt.norm.'
+#PHEN = '~/gm_rnaseq/gtex-pipeline_do2/qtl_e/results/04/rnaseq430.expression.bed.gz'
+#COV = '~/gm_rnaseq/gtex-pipeline_do2/qtl_e/results/04/rnaseq430.combined_covariates.txt'
+#ONLY_PLOT = FALSE
 
 
 # 0. 関数
@@ -66,7 +117,8 @@ make_D <- function(qtl, LD, N) {
 }
 
 make_D_wrap <- function(qtl, G, N, Z = NULL, adjust_covariates = TRUE){
-  if (args$only_plot) {
+  #if (args$only_plot) {
+  if (ONLY_PLOT) {
     return( make_D(qtl, NULL, N) )
   }
 
@@ -111,7 +163,8 @@ run_susie_with_fallback <- function(D1, D2, coverages = seq(0.95, 0.05, by = -0.
 
 # 1. covの処理、転置してsamples × covariatesとするのとサンプルリストを作る
 cov <- read.table(
-  args$cov,
+  #args$cov,
+  COV,
   header = TRUE,
   row.names = 1,
   check.names = FALSE
@@ -123,7 +176,8 @@ Z <- t(as.matrix(cov))
 
 # 2. phenの処理、サンプルリストを作る
 pheno <- read.table(
-  args$phen,
+  #args$phen,
+  PHEN,
   header = TRUE,
   comment.char = "",
   sep = "\t",
@@ -134,17 +188,23 @@ pheno_samples <- colnames(pheno)[5:ncol(pheno)]
 
 
 # 3. tensorqtl nominal結果の処理、phen_id1/2のみのsumstaにする
-chr <- sub(":.*", "", args$variant_id)
-nominal_file <- paste0(args$assoc_prefix, chr, ".parquet")
+#chr <- sub(":.*", "", args$variant_id)
+chr <- sub(":.*", "", VARIANT_ID)
+#nominal_file <- paste0(args$assoc_prefix, chr, ".parquet")
+nominal_file <- paste0(ASSOC_PREFIX, chr, ".parquet")
 
-lead_pos <- as.integer(sub(".*:(\\d+):.*", "\\1", args$variant_id))
+#lead_pos <- as.integer(sub(".*:(\\d+):.*", "\\1", args$variant_id))
+lead_pos <- as.integer(sub(".*:(\\d+):.*", "\\1", VARIANT_ID))
 
 nom <- read_parquet(nominal_file)
 nom$pos <- as.integer(sub(".*:(\\d+):.*", "\\1", nom$variant_id))
-nom <- nom[nom$pos >= lead_pos - args$window & nom$pos <= lead_pos + args$window, ]
+#nom <- nom[nom$pos >= lead_pos - args$window & nom$pos <= lead_pos + args$window, ]
+nom <- nom[nom$pos >= lead_pos - WINDOW & nom$pos <= lead_pos + WINDOW, ]
 
-qtl1 <- nom[nom$phenotype_id == args$phen_id1, ]
-qtl2 <- nom[nom$phenotype_id == args$phen_id2, ]
+#qtl1 <- nom[nom$phenotype_id == args$phen_id1, ]
+#qtl2 <- nom[nom$phenotype_id == args$phen_id2, ]
+qtl1 <- nom[nom$phenotype_id == GENE1, ]
+qtl2 <- nom[nom$phenotype_id == GENE2, ]
 
 
 # 4. genoの処理、plink bed → bigSNPと変換してgenotype matrixを得つつ、サンプルリストを作る
@@ -156,7 +216,8 @@ on.exit(unlink(tmpdir, recursive = TRUE), add = TRUE)
 
 backingfile <- file.path(tmpdir, "geno")
 
-plink_bed <- paste0(args$geno_prefix, chr, ".bed")
+#plink_bed <- paste0(args$geno_prefix, chr, ".bed")
+plink_bed <- paste0(GENO_PREFIX, chr, ".bed")
 snp_readBed(plink_bed, backingfile = backingfile)
 obj <- snp_attach(paste0(backingfile, ".rds"))
 G_all <- obj$genotypes
@@ -193,7 +254,8 @@ D2 <- make_D_wrap(qtl2, G_mat2, N, Z, adjust_covariates = COV_ADJUSTMENT)
 
 
 # 7. regional plot描いて、windowが適切か考える
-if (args$only_plot) {
+#if (args$only_plot) {
+if (ONLY_PLOT) {
   xlim_common <- c(lead_pos - args$window / 3, lead_pos + args$window / 3)
   xticks <- seq(xlim_common[1], xlim_common[2], by = 2e5)
 
@@ -235,6 +297,27 @@ saveRDS(used_cov, paste0(args$out_prefix, ".used_cov.rds"))
 coloc_res <- coloc.susie(S1, S2)
 saveRDS(coloc_res, paste0(args$out_prefix, ".coloc_res.rds"))
 
+#VARIANT_ID = ""
+#N = "results/01/42"
+#S1 = readRDS(paste0(N, ".S1.rds"))
+#S2 = readRDS(paste0(N, ".S2.rds"))
+#used_cov = readRDS(paste0(N, ".used_cov.rds"))
+#coloc_res = readRDS(paste0(N, ".coloc_res.rds"))
+#coloc_res
+#
+#summary(S1)
+#summary(S2)
+#used_cov
+#
+#S1$pip[VARIANT_ID]
+#S2$pip[VARIANT_ID]
+#
+#coloc_res$results[coloc_res$results$SNP.PP.H4.abf>0.1,]
+#coloc_res$results[coloc_res$results$SNP.PP.H4.row1>0.1,]
+#coloc_res$results[coloc_res$results$SNP.PP.H4.row2>0.1,]
+#coloc_res$results[coloc_res$results$snp==VARIANT_ID,]
+
+
 # パターン0：S2にCSないとき
 if (!has_cs(S2)){
 
@@ -253,8 +336,10 @@ if (!has_cs(S2)){
   #  warning("Target variant not  found in coloc.susie summary")
   #}
 
-  res$gene1 <- args$phen_id1
-  res$gene2 <- args$phen_id2
+  #res$gene1 <- args$phen_id1
+  #res$gene2 <- args$phen_id2
+  res$gene1 <- GENE1
+  res$gene2 <- GENE2
   res$cs    <- used_cov
   write.table(
     res,
@@ -277,16 +362,20 @@ if (!has_cs(S2)){
 
   # summary にしか無い列を NA で埋める
   res$nsnps            <- NA
-  res$hit1             <- args$variant_id
-  res$hit2             <- args$variant_id
+  #res$hit1             <- args$variant_id
+  #res$hit2             <- args$variant_id
+  res$hit1             <- VARIANT_ID
+  res$hit2             <- VARIANT_ID
   res$PP.H0.abf        <- NA
   res$PP.H1.abf        <- NA
   res$PP.H2.abf        <- NA
   res$PP.H3.abf        <- NA
   res$idx1             <- NA
   res$idx2             <- NA
-  res$gene1            <- args$phen_id1
-  res$gene2            <- args$phen_id2
+  #res$gene1            <- args$phen_id1
+  #res$gene2            <- args$phen_id2
+  res$gene1            <- GENE1
+  res$gene2            <- GENE2
   res$cs               <- used_cov
   write.table(
     res,
@@ -296,3 +385,21 @@ if (!has_cs(S2)){
     quote = FALSE
   )
 }
+
+#print("susie.coloc res")
+#print(res$summary)
+
+
+## 10. save
+#pip_df <- summary(S2)$vars
+#pip_df$snp <- D2$snp[ pip_df$variable ]
+#pip_df <- pip_df[pip_df$snp == args$variant_id, ]
+#pip_df$gene1 = args$phen_id1
+#pip_df$gene2 = args$phen_id2
+#write.table(
+#  pip_df,
+#  file = paste0(args$out_prefix, ".is_in_cs95.tsv"),
+#  sep = "\t",
+#  row.names = FALSE,
+#  quote = FALSE
+#)
