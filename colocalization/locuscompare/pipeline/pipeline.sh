@@ -39,10 +39,10 @@ GWA_SUMSTA_ORIG=$GWA_SUMSTA
 
 # 0: gwas sumstaをgwaslab用にmunge
 # 方針
-# - formatbookで対応するのが一番シンプルで柔軟
-# -- ~/miniconda3/envs/gwaslab3/lib/python3.10/site-packages/gwaslab/data/formatbook.json
-# - それでも無理なら事前にファイルを以下のようにいじる
-# - 結構ファイルが重いので事前に染色体で削るのがバランスが良い
+# - 1. まずformatbookで対応できることはそこでする
+# - 2. 次に、fmtで分岐して、以下やgwaslabで読み込み後にいじる
+# -- どっちでするかは、bashとpythonどっちがやりやすいかによる
+# -- 結構ファイルが重いので事前に染色体で削るのがバランスが良い
 TEMP1=$(mktemp)
 TEMP2=$(mktemp)   # pan-ukb 用
 trap 'rm "$TEMP1" "$TEMP2"' EXIT
@@ -106,7 +106,9 @@ case "$GWA_FMT" in
 
   NealeLab)
     # gwaslabが.bgzを読めない
-    zcat $GWA_SUMSTA > $TEMP1
+    zcat $GWA_SUMSTA \
+      | awk -v CHR="$CHR" '$1 ~ ("^" CHR ":")' \
+      > $TEMP1
     ;;
   *)
     # tempファイル名から圧縮の有無を推測できないので解凍しておく
